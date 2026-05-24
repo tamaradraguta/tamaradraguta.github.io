@@ -42,5 +42,30 @@ document.querySelectorAll('.project-card, .about-content').forEach(el => {
     observer.observe(el);
 });
 
+// Dark Mode Toggle Functionality
+const darkModeToggle = document.querySelector('.dark-mode-toggle');
+const body = document.body;
+
+// Check if dark mode was previously enabled
+if (localStorage.getItem('darkMode') === 'enabled') {
+    body.classList.add('dark-mode');
+    darkModeToggle.textContent = '☀️';
+} else {
+    darkModeToggle.textContent = '🌙';
+}
+
+// Toggle dark mode on button click
+darkModeToggle.addEventListener('click', function() {
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+        darkModeToggle.textContent = '☀️';
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        darkModeToggle.textContent = '🌙';
+        localStorage.setItem('darkMode', 'disabled');
+    }
+});
+
 // Log to console for debugging (optional)
 console.log('Portfolio loaded successfully! 🚀');
